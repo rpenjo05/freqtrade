@@ -126,29 +126,29 @@ class CombinedBinHAndClucOpt(IHyperOpt):
 		
 		
 	def populate_buy_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        dataframe.loc[
-            (  # strategy BinHV45
-                    dataframe['lower'].shift().gt(0) &
-                    dataframe['bbdelta'].gt(dataframe['close'] * 0.008) &
-                    dataframe['closedelta'].gt(dataframe['close'] * 0.0175) &
-                    dataframe['tail'].lt(dataframe['bbdelta'] * 0.25) &
-                    dataframe['close'].lt(dataframe['lower'].shift()) &
-                    dataframe['close'].le(dataframe['close'].shift())
-            ) |
-            (  # strategy ClucMay72018
-                    (dataframe['close'] < dataframe['ema_slow']) &
-                    (dataframe['close'] < 0.985 * dataframe['bb_lowerband']) &
-                    (dataframe['volume'] < (dataframe['volume_mean_slow'].shift(1) * 20))
-            ),
-            'buy'
-        ] = 1
-        return dataframe
+		dataframe.loc[
+		    (  # strategy BinHV45
+		            dataframe['lower'].shift().gt(0) &
+		            dataframe['bbdelta'].gt(dataframe['close'] * 0.008) &
+		            dataframe['closedelta'].gt(dataframe['close'] * 0.0175) &
+		            dataframe['tail'].lt(dataframe['bbdelta'] * 0.25) &
+		            dataframe['close'].lt(dataframe['lower'].shift()) &
+		            dataframe['close'].le(dataframe['close'].shift())
+		    ) |
+		    (  # strategy ClucMay72018
+		            (dataframe['close'] < dataframe['ema_slow']) &
+		            (dataframe['close'] < 0.985 * dataframe['bb_lowerband']) &
+		            (dataframe['volume'] < (dataframe['volume_mean_slow'].shift(1) * 20))
+		    ),
+		    'buy'
+		] = 1
+		return dataframe
 
-    def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        """
-        """
-        dataframe.loc[
-            (dataframe['close'] > dataframe['bb_middleband']),
-            'sell'
-        ] = 1
-        return dataframe
+	def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+		"""
+		"""
+		dataframe.loc[
+		    (dataframe['close'] > dataframe['bb_middleband']),
+		    'sell'
+		] = 1
+		return dataframe
