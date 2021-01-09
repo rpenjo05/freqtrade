@@ -74,6 +74,24 @@ class CombinedBinHAndClucOpt(IHyperOpt):
 		    # Categorical([True, False], name='rsi-enabled'),
 		    # Categorical(['bb_lower', 'macd_cross_signal', 'sar_reversal'], name='trigger')
 		]
+	
+	@staticmethod
+	def generate_roi_table(params: Dict) -> Dict[int, float]:
+
+		roi_table = {}
+		roi_table[0] = params['roi_p1'] + params['roi_p2'] + params['roi_p3'] + params['roi_p4'] + params['roi_p5'] + params['roi_p6'] + params['roi_p7'] + params['roi_p8'] + params['roi_p9'] + params['roi_p10']
+		roi_table[params['roi_t10']] = params['roi_p1'] + params['roi_p2'] + params['roi_p3'] + params['roi_p4'] + params['roi_p5'] + params['roi_p6'] + params['roi_p7'] + params['roi_p8'] + params['roi_p9']
+		roi_table[params['roi_t10'] + params['roi_t9']] = params['roi_p1'] + params['roi_p2'] + params['roi_p3'] + params['roi_p4'] + params['roi_p5'] + params['roi_p6'] + params['roi_p7'] + params['roi_p8']
+		roi_table[params['roi_t10'] + params['roi_t9'] + params['roi_t8']] = params['roi_p1'] + params['roi_p2'] + params['roi_p3'] + params['roi_p4'] + params['roi_p5'] + params['roi_p6'] + params['roi_p7']
+		roi_table[params['roi_t10'] + params['roi_t9'] + params['roi_t8'] + params['roi_t7']] = params['roi_p1'] + params['roi_p2'] + params['roi_p3'] + params['roi_p4'] + params['roi_p5'] + params['roi_p6']
+		roi_table[params['roi_t10'] + params['roi_t9'] + params['roi_t8'] + params['roi_t7'] + params['roi_t6']] = params['roi_p1'] + params['roi_p2'] + params['roi_p3'] + params['roi_p4'] + params['roi_p5']
+		roi_table[params['roi_t10'] + params['roi_t9'] + params['roi_t8'] + params['roi_t7'] + params['roi_t6'] + params['roi_t5']] = params['roi_p1'] + params['roi_p2'] + params['roi_p3'] + params['roi_p4']
+		roi_table[params['roi_t10'] + params['roi_t9'] + params['roi_t8'] + params['roi_t7'] + params['roi_t6'] + params['roi_t5'] + params['roi_t4']] = params['roi_p1'] + params['roi_p2'] + params['roi_p3']
+		roi_table[params['roi_t10'] + params['roi_t9'] + params['roi_t8'] + params['roi_t7'] + params['roi_t6'] + params['roi_t5'] + params['roi_t4'] + params['roi_t3']] = params['roi_p1'] + params['roi_p2']
+		roi_table[params['roi_t10'] + params['roi_t9'] + params['roi_t8'] + params['roi_t7'] + params['roi_t6'] + params['roi_t5'] + params['roi_t4'] + params['roi_t3'] + params['roi_t2']] = params['roi_p1']
+		roi_table[params['roi_t10'] + params['roi_t9'] + params['roi_t8'] + params['roi_t7'] + params['roi_t6'] + params['roi_t5'] + params['roi_t4'] + params['roi_t3'] + params['roi_t2'] + params['roi_t1']] = 0
+
+		return roi_table
 		
 	@staticmethod
 	def sell_strategy_generator(params: Dict[str, Any]) -> Callable:
