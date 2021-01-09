@@ -38,7 +38,7 @@
         "ccxt_config": {"enableRateLimit": true},
         "ccxt_async_config": {
             "enableRateLimit": true,
-            "rateLimit": 500
+            "rateLimit": 200
         },
         "pair_whitelist": [
             "ETH/BTC",
@@ -53,7 +53,8 @@
             "XMR/BTC"
         ],
         "pair_blacklist": [
-            "DOGE/BTC"
+            "DOGE/BTC",
+	     "BNB/BTC"
         ]
     },
     "pairlists": [{
