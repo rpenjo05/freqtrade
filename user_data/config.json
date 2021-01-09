@@ -1,0 +1,99 @@
+{
+    "max_open_trades": -1,
+    "stake_currency": "BTC",
+    "dry_run_wallet": 0.00154,
+    "stake_amount": 0.0003,
+    "tradable_balance_ratio": 0.99,
+    "fiat_display_currency": "INR",
+    "timeframe": "5m",
+    "dry_run": true,
+    "fiat_display_currency": "INR",
+    "cancel_open_orders_on_exit": false,
+    "unfilledtimeout": {
+        "buy": 10,
+        "sell": 30
+    },
+    "bid_strategy": {
+        "use_order_book": false,
+        "ask_last_balance": 0.0,
+        "order_book_top": 1,
+        "check_depth_of_market": {
+            "enabled": false,
+            "bids_to_ask_delta": 1
+        }
+    },
+    
+    "ask_strategy":{
+        "use_order_book": false,
+        "order_book_min": 1,
+        "order_book_max": 1,
+        "use_sell_signal": true,
+        "sell_profit_only": false,
+        "ignore_roi_if_buy_signal": false
+    },
+    "exchange": {
+        "name": "binance",
+        "key": "toLolQvA06WWSRaOuUk7UaeSMOLB2fsNRuA07LxihbBcEurL8xZ0BhuD9flnjVwR",
+        "secret": "t62kUS4SEzpqa9zWPCJ7w6QRZ6tir2BnM4cEwmifEliHDlv0zThLoiEevG96XvkC",
+        "ccxt_config": {"enableRateLimit": true},
+        "ccxt_async_config": {
+            "enableRateLimit": true,
+            "rateLimit": 500
+        },
+        "pair_whitelist": [
+            "ETH/BTC",
+            "LTC/BTC",
+            "ETC/BTC",
+            "DASH/BTC",
+            "ZEC/BTC",
+            "XLM/BTC",
+            "XRP/BTC",
+            "TRX/BTC",
+            "ADA/BTC",
+            "XMR/BTC"
+        ],
+        "pair_blacklist": [
+            "DOGE/BTC"
+        ]
+    },
+    "pairlists": [{
+        "method": "VolumePairList",
+        "number_assets": 50,
+        "sort_key": "quoteVolume",
+        "refresh_period": 1800
+	}],
+    "edge": {
+        "enabled": false,
+        "process_throttle_secs": 3600,
+        "calculate_since_number_of_days": 7,
+        "allowed_risk": 0.01,
+        "stoploss_range_min": -0.01,
+        "stoploss_range_max": -0.1,
+        "stoploss_range_step": -0.01,
+        "minimum_winrate": 0.60,
+        "minimum_expectancy": 0.20,
+        "min_trade_number": 10,
+        "max_trade_duration_minute": 1440,
+        "remove_pumps": false
+    },
+    "telegram": {
+        "enabled": true,
+        "token": "1592396250:AAEhVbgPbkthBXiyJpls8D1GLhdVeH7k6SE",
+        "chat_id": "476541716"
+    },
+    "api_server": {
+        "enabled": false,
+        "listen_ip_address": "0.0.0.0",
+        "listen_port": 8080,
+        "verbosity": "error",
+        "jwt_secret_key": "somethingrandom",
+        "CORS_origins": [],
+        "username": "freqtrader",
+        "password": "SuperSecurePassword"
+    },
+    "initial_state": "running",
+    "forcebuy_enable": false,
+    "internals": {
+        "process_throttle_secs": 5
+    }
+}
