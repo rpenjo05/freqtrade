@@ -25,22 +25,22 @@ ENV LD_LIBRARY_PATH /usr/local/lib
 
 # Install dependencies
 COPY requirements.txt requirements-hyperopt.txt /freqtrade/
-RUN  pip install --user --no-cache-dir numpy \
-  && pip install --user --no-cache-dir -r requirements-hyperopt.txt
+RUN  pip install  --no-cache-dir numpy \
+  && pip install  --no-cache-dir -r requirements-hyperopt.txt
 
 # Copy dependencies to runtime-image
-FROM base as runtime-image
-COPY --from=python-deps /usr/local/lib /usr/local/lib
-ENV LD_LIBRARY_PATH /usr/local/lib
+#FROM base as runtime-image
+#COPY --from=python-deps /usr/local/lib /usr/local/lib
+#ENV LD_LIBRARY_PATH /usr/local/lib
 
-COPY --from=python-deps /root/.local /root/.local
+#COPY --from=python-deps /root/.local /root/.local
 
 
 
 # Install and execute
 COPY . /freqtrade/
-RUN pip install -e . --no-cache-dir \
-  && mkdir /freqtrade/user_data/
-ENTRYPOINT ["freqtrade"]
+RUN pip install -e . --no-cache-dir 
+
+#ENTRYPOINT ["freqtrade"]
 # Default to trade mode
-CMD [ "trade" ]
+#CMD [ "trade","--config","user_data/config.json","--strategy","BBRSI"]
