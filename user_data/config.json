@@ -54,6 +54,7 @@
 	    "NANO/BTC",
 	    "LRC/BTC",
 	    "SXP/BTC",
+	     "CTXC/BTC",
         ],
         "pair_blacklist": [
             "DOGE/BTC",
