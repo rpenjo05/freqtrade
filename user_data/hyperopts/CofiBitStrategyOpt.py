@@ -8,7 +8,7 @@ from skopt.space import Categorical, Dimension, Integer, Real
 import freqtrade.vendor.qtpylib.indicators as qtpylib
 from freqtrade.optimize.hyperopt_interface import IHyperOpt
 
-class_name = 'CombinedBinHAndClucOpt'
+class_name = 'CofiBitStrategyOpt'
 
 
 class CofiBitStrategyOpt(IHyperOpt):
