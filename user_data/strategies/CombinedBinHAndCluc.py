@@ -21,21 +21,21 @@ class CombinedBinHAndCluc(IStrategy):
     # - if the market is constantly green(like in JAN 2018) the best performance is reached with
     #   "max_open_trades" = 2 and minimal_roi = 0.01
     minimal_roi = {
-        "0": 0.01994,
-        "19": 0.0176,
-        "280": 0.01654,
-        "567": 0.01444,
-        "621": 0.01257,
-        "756": 0.0115,
-        "798": 0.01015,
-        "866": 0.006,
-        "1142": 0.00196,
-        "1209": 0.00162,
-        "1299": 0
+        "0": 0.01806,
+        "64": 0.01672,
+        "155": 0.01547,
+        "198": 0.01324,
+        "307": 0.0112,
+        "499": 0.00996,
+        "555": 0.00802,
+        "719": 0.00581,
+        "852": 0.00328,
+        "994": 0.00189,
+        "1262": 0
     }
 
     # Stoploss:
-    stoploss = -0.32748
+    stoploss = -0.26929
 
     timeframe = '5m'
 
