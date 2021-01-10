@@ -57,15 +57,22 @@
         ],
         "pair_blacklist": [
             "DOGE/BTC",
-	     "BNB/BTC"
+	     "BNB/BTC",
+	     "TRX/BTC",
+	      "XVG/BTC",
+	      "IOST/BTC",
+		"BCPT"
         ]
     },
-    "pairlists": [{
-        "method": "VolumePairList",
-        "number_assets": 50,
-        "sort_key": "quoteVolume",
-        "refresh_period": 1800
-	}],
+    "pairlists": [
+	    {
+	"method": "VolumePairList",
+	"number_assets": 50,
+	"sort_key": "quoteVolume",
+	"refresh_period": 1800
+	},
+	    {"method": "PriceFilter", "min_price": 0.00000200}
+    ],
     "edge": {
         "enabled": false,
         "process_throttle_secs": 3600,
