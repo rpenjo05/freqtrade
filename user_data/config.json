@@ -33,8 +33,8 @@
     },
     "exchange": {
         "name": "binance",
-        "key": "toLolQvA06WWSRaOuUk7UaeSMOLB2fsNRuA07LxihbBcEurL8xZ0BhuD9flnjVwR",
-        "secret": "t62kUS4SEzpqa9zWPCJ7w6QRZ6tir2BnM4cEwmifEliHDlv0zThLoiEevG96XvkC",
+        "key": "ZwQBE3TGs6LZWgT2HHaHeinlOR0ePqtrANTOBdk243JTWLpKQspSqjhTJySD0yuE",
+        "secret": "Kq6rucGFm39HTKY0meiUbaaICQsVnm5bjwaark0n4POBib27hIulp1axD5rh5ti5",
         "ccxt_config": {"enableRateLimit": true},
         "ccxt_async_config": {
             "enableRateLimit": true,
@@ -83,7 +83,7 @@
     },
     "telegram": {
         "enabled": true,
-        "token": "1588390067:AAH_l4D4pNqZIj_oF6eNprzSU6MqvR7h72k",
+        "token": "1592396250:AAEhVbgPbkthBXiyJpls8D1GLhdVeH7k6SE",
         "chat_id": "476541716"
     },
     "api_server": {
