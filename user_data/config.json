@@ -58,10 +58,6 @@
         "pair_blacklist": [
             "DOGE/BTC",
 	     "BNB/BTC",
-	     "TRX/BTC",
-	      "XVG/BTC",
-	      "IOST/BTC",
-		"BCPT"
         ]
     },
     "pairlists": [
