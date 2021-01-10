@@ -64,40 +64,40 @@ class CofiBitStrategyOpt(IHyperOpt):
 			
 		
 	def populate_buy_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        """
-        Based on TA indicators, populates the buy signal for the given dataframe
-        :param dataframe: DataFrame
-        :return: DataFrame with buy column
-        """
-        dataframe.loc[
-            (
-                (dataframe['open'] < dataframe['ema_low']) &
-                (qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])) &
-                # (dataframe['fastk'] > dataframe['fastd']) &
-                (dataframe['fastk'] < 30) &
-                (dataframe['fastd'] < 30) &
-                (dataframe['adx'] > 30)
-            ),
-            'buy'] = 1
+		"""
+		Based on TA indicators, populates the buy signal for the given dataframe
+		:param dataframe: DataFrame
+		:return: DataFrame with buy column
+		"""
+		dataframe.loc[
+		    (
+			(dataframe['open'] < dataframe['ema_low']) &
+			(qtpylib.crossed_above(dataframe['fastk'], dataframe['fastd'])) &
+			# (dataframe['fastk'] > dataframe['fastd']) &
+			(dataframe['fastk'] < 30) &
+			(dataframe['fastd'] < 30) &
+			(dataframe['adx'] > 30)
+		    ),
+		    'buy'] = 1
 
-        return dataframe
+		return dataframe
 
-    def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        """
-        Based on TA indicators, populates the sell signal for the given dataframe
-        :param dataframe: DataFrame
-        :return: DataFrame with buy column
-        """
-        dataframe.loc[
-            (
-                (dataframe['open'] >= dataframe['ema_high'])
-            ) |
-            (
-                # (dataframe['fastk'] > 70) &
-                # (dataframe['fastd'] > 70)
-                    (qtpylib.crossed_above(dataframe['fastk'], 70)) |
-                    (qtpylib.crossed_above(dataframe['fastd'], 70))
-            ),
-            'sell'] = 1
+	def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+		"""
+		Based on TA indicators, populates the sell signal for the given dataframe
+		:param dataframe: DataFrame
+		:return: DataFrame with buy column
+		"""
+		dataframe.loc[
+		    (
+			(dataframe['open'] >= dataframe['ema_high'])
+		    ) |
+		    (
+			# (dataframe['fastk'] > 70) &
+			# (dataframe['fastd'] > 70)
+			    (qtpylib.crossed_above(dataframe['fastk'], 70)) |
+			    (qtpylib.crossed_above(dataframe['fastd'], 70))
+		    ),
+		    'sell'] = 1
 
-        return dataframe
+		return dataframe
