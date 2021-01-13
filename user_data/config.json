@@ -68,7 +68,10 @@
 	"sort_key": "quoteVolume",
 	"refresh_period": 1800
 	},
-	    {"method": "PriceFilter", "min_price": 0.00000200}
+	    {"method": "PriceFilter", 
+	     "min_price": 0.00000200,
+	     "max_price": 0.00028000
+	    }
     ],
     "edge": {
         "enabled": false,
