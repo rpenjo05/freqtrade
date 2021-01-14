@@ -22,24 +22,24 @@ class CombinedBinHAndCluc(IStrategy):
     #   "max_open_trades" = 2 and minimal_roi = 0.01
      # ROI table:
     # ROI table:
+    
+    #Sharpe 3.28
     minimal_roi = {
-        "0": 0.02465,
-        "56": 0.02059,
-        "90": 0.01623,
-        "105": 0.01419,
-        "218": 0.01126,
-        "429": 0.00946,
-        "592": 0.00758,
-        "593": 0.0062,
-        "747": 0.00156,
-        "994": 0.00034,
-        "1185": 0
+        "0": 0.01801,
+        "90": 0.01617,
+        "101": 0.01298,
+        "156": 0.01085,
+        "159": 0.00971,
+        "269": 0.00769,
+        "367": 0.00621,
+        "525": 0.00411,
+        "547": 0.00199,
+        "591": 0.00182,
+        "806": 0
     }
 
     # Stoploss:
-    stoploss = -0.27259
-
-    timeframe = '5m'
+    stoploss = -0.30333
 
     use_sell_signal = True
     sell_profit_only = True
@@ -102,4 +102,3 @@ class CombinedBinHAndCluc(IStrategy):
             'sell'
         ] = 1
         return dataframe
-
