@@ -49,7 +49,7 @@ class CombinedBinHAndClucOpt(IHyperOpt):
 	@staticmethod
 	def sell_indicator_space() -> List[Dimension]:
 		return [
-		    Integer(50, 100, name='sell-rsi-value'),
+		    Integer(60, 100, name='sell-rsi-value'),
 		    Categorical([True, False], name='sell-rsi-enabled'),
 		    Categorical(['sell-bb_lower2',
 				 'sell-bb_middle2',
@@ -128,7 +128,8 @@ class CombinedBinHAndClucOpt(IHyperOpt):
 		"""
 		"""
 		dataframe.loc[
-		    (dataframe['close'] > dataframe['bb_middleband']),
+		    (dataframe['sell-rsi'] > 60) &
+            		(dataframe['close'] > dataframe['bb_middleband2']),
 		    'sell'
 		] = 1
 		return dataframe
