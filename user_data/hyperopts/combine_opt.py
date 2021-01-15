@@ -15,6 +15,48 @@ class CombinedBinHAndClucOpt(IHyperOpt):
 
 
 	@staticmethod
+	def buy_strategy_generator(params: Dict[str, Any]) -> Callable:
+		
+		def populate_buy_trend(dataframe: DataFrame, metadata: dict) -> DataFrame:
+		    
+			conditions = []
+
+			# GUARDS AND TRENDS
+			if 'buy-rsi-enabled' in params and params['buy-rsi-enabled']:
+				conditions.append(dataframe['buy-rsi'] < params['buy-rsi-value'])
+				
+			conditions.append(		(  # strategy BinHV45
+							    dataframe['lower'].shift().gt(0) &
+							    dataframe['bbdelta'].gt(dataframe['close'] * 0.008) &
+							    dataframe['closedelta'].gt(dataframe['close'] * 0.0175) &
+							    dataframe['tail'].lt(dataframe['bbdelta'] * 0.25) &
+							    dataframe['close'].lt(dataframe['lower'].shift()) &
+							    dataframe['close'].le(dataframe['close'].shift())
+						    ) |
+						    (  # strategy ClucMay72018
+							    (dataframe['close'] < dataframe['ema_slow']) &
+							    (dataframe['close'] < 0.985 * dataframe['bb_lowerband']) &
+							    (dataframe['volume'] < (dataframe['volume_mean_slow'].shift(1) * 20))
+						    )
+						)
+
+			if conditions:
+				dataframe.loc[
+				    reduce(lambda x, y: x & y, conditions),
+				    'buy'] = 1
+
+			return dataframe
+
+		return populate_buy_trend
+		
+	@staticmethod
+	def indicator_space() -> List[Dimension]:
+		return [
+		    Integer(10, 50, name='buy-rsi-value'),
+		    Categorical([True, False], name='buy-rsi-enabled'),
+		]
+
+	@staticmethod
 	def sell_strategy_generator(params: Dict[str, Any]) -> Callable:
 		"""
 		Define the sell strategy parameters to be used by hyperopt
@@ -49,7 +91,7 @@ class CombinedBinHAndClucOpt(IHyperOpt):
 	@staticmethod
 	def sell_indicator_space() -> List[Dimension]:
 		return [
-		    Integer(60, 100, name='sell-rsi-value'),
+		    Integer(50, 100, name='sell-rsi-value'),
 		    Categorical([True, False], name='sell-rsi-enabled'),
 		    Categorical(['sell-bb_lower2',
 				 'sell-bb_middle2',
