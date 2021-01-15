@@ -38,7 +38,7 @@ class CombinedBinHAndCluc(IStrategy):
     }
 
     # Stoploss:
-    stoploss = -0.30333"""
+    stoploss = -0.30333
     
     
     # Sharpe = 8.41941
@@ -58,8 +58,26 @@ class CombinedBinHAndCluc(IStrategy):
     }
 
     # Stoploss:
-    stoploss = -0.13996
+    stoploss = -0.13996"""
+    
+    #Sharpe = -6.95445
+    # ROI table:
+    minimal_roi = {
+        "0": 0.01801,
+        "32": 0.01545,
+        "81": 0.01343,
+        "244": 0.01199,
+        "392": 0.0106,
+        "538": 0.00939,
+        "714": 0.00805,
+        "1003": 0.00683,
+        "1249": 0.00208,
+        "1308": 0.00168,
+        "1515": 0
+    }
 
+    # Stoploss:
+    stoploss = -0.13996
     use_sell_signal = True
     sell_profit_only = True
     ignore_roi_if_buy_signal = False
