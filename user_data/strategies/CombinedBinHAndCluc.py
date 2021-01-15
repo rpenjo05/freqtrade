@@ -21,9 +21,8 @@ class CombinedBinHAndCluc(IStrategy):
     # - if the market is constantly green(like in JAN 2018) the best performance is reached with
     #   "max_open_trades" = 2 and minimal_roi = 0.01
      # ROI table:
-    # ROI table:
     
-    #Sharpe 3.28
+    """#Sharpe 3.28
     minimal_roi = {
         "0": 0.01801,
         "90": 0.01617,
@@ -39,7 +38,27 @@ class CombinedBinHAndCluc(IStrategy):
     }
 
     # Stoploss:
-    stoploss = -0.30333
+    stoploss = -0.30333"""
+    
+    
+    # Sharpe = 8.41941
+    # ROI table:
+    minimal_roi = {
+        "0": 0.03266,
+        "19": 0.02882,
+        "175": 0.02636,
+        "344": 0.02409,
+        "450": 0.02021,
+        "637": 0.01556,
+        "791": 0.0106,
+        "1089": 0.00833,
+        "1243": 0.00398,
+        "1533": 0.00232,
+        "1704": 0
+    }
+
+    # Stoploss:
+    stoploss = -0.13996
 
     use_sell_signal = True
     sell_profit_only = True
@@ -69,6 +88,7 @@ class CombinedBinHAndCluc(IStrategy):
         dataframe['bb_middleband2'] = bollinger2['mid']
         dataframe['bb_upperband2'] = bollinger2['upper']
         dataframe['sell-rsi'] = ta.RSI(dataframe)
+        dataframe['buy-rsi'] = ta.RSI(dataframe)
 
         return dataframe
 
@@ -86,7 +106,9 @@ class CombinedBinHAndCluc(IStrategy):
                     (dataframe['close'] < dataframe['ema_slow']) &
                     (dataframe['close'] < 0.985 * dataframe['bb_lowerband']) &
                     (dataframe['volume'] < (dataframe['volume_mean_slow'].shift(1) * 20))
-            ),
+            )
+            & ( dataframe['buy-rsi'] < 18)
+            ,
             'buy'
         ] = 1
         return dataframe
@@ -95,7 +117,7 @@ class CombinedBinHAndCluc(IStrategy):
         """
         """
         dataframe.loc[
-        	(dataframe['sell-rsi'] > 60) &
+        	(dataframe['sell-rsi'] > 63) &
             (dataframe['close'] > dataframe['bb_middleband2'])
             
             ,
