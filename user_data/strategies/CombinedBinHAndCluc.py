@@ -77,7 +77,7 @@ class CombinedBinHAndCluc(IStrategy):
     }
 
     # Stoploss:
-    stoploss = -0.13996"""
+    stoploss = -0.13996
     
     #Sharpe = -7.69751, avg=51.2m
     # ROI table:
@@ -96,7 +96,27 @@ class CombinedBinHAndCluc(IStrategy):
     }
 
     # Stoploss:
-    stoploss = -0.21781
+    stoploss = -0.21781 """
+    
+    # ROI table:
+    minimal_roi = {
+        "0": 0.03697,
+        "58": 0.03269,
+        "87": 0.02786,
+        "380": 0.02401,
+        "398": 0.02027,
+        "513": 0.01853,
+        "631": 0.01553,
+        "823": 0.01319,
+        "1044": 0.00854,
+        "1072": 0.00364,
+        "1226": 0
+    }
+
+    # Stoploss:
+    stoploss = -0.3164
+    
+    
 
     
     use_sell_signal = True
@@ -129,19 +149,20 @@ class CombinedBinHAndCluc(IStrategy):
         dataframe['sell-rsi'] = ta.RSI(dataframe)
         dataframe['buy-rsi_b'] = ta.RSI(dataframe)
         dataframe['buy-rsi_c'] = ta.RSI(dataframe)
+        dataframe['buy-rsi'] = ta.RSI(dataframe)
 
         return dataframe
 
     def populate_buy_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         dataframe.loc[
-            (  (# strategy BinHV45
+            (  # strategy BinHV45
                     dataframe['lower'].shift().gt(0) &
                     dataframe['bbdelta'].gt(dataframe['close'] * 0.008) &
                     dataframe['closedelta'].gt(dataframe['close'] * 0.0175) &
                     dataframe['tail'].lt(dataframe['bbdelta'] * 0.25) &
                     dataframe['close'].lt(dataframe['lower'].shift()) &
                     dataframe['close'].le(dataframe['close'].shift())
-            ) & (dataframe['buy-rsi_b'] < 29)  )
+             )
             
             |
             
@@ -159,7 +180,7 @@ class CombinedBinHAndCluc(IStrategy):
         """
         """
         dataframe.loc[
-        	#(dataframe['sell-rsi'] > 98) &
+        	(dataframe['sell-rsi'] > 56) &
             (dataframe['close'] > dataframe['bb_middleband2'])
             
             ,
