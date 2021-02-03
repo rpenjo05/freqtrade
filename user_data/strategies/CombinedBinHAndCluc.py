@@ -114,7 +114,7 @@ class CombinedBinHAndCluc(IStrategy):
     }
 
     # Stoploss:
-    stoploss = -0.3164 """
+    stoploss = -0.3164
     
     # ROI table:
     minimal_roi = {
@@ -129,6 +129,21 @@ class CombinedBinHAndCluc(IStrategy):
         "1389": 0.00675,
         "1615": 0.00195,
         "1893": 0
+    } """
+    
+    # ROI table:
+    minimal_roi = {
+        "0": 0.03287,
+        "127": 0.03025,
+        "185": 0.02531,
+        "351": 0.02233,
+        "642": 0.01784,
+        "818": 0.01542,
+        "1023": 0.01111,
+        "1062": 0.0073,
+        "1150": 0.00363,
+        "1366": 0.0034,
+        "1649": 0
     }
 
     # Stoploss:
@@ -160,10 +175,17 @@ class CombinedBinHAndCluc(IStrategy):
         dataframe['bb_middleband1'] = bollinger1['mid']
         dataframe['bb_upperband1'] = bollinger1['upper']
         
-        bollinger2 = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=2)
+        bollinger2 = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=40, stds=2)
         dataframe['bb_lowerband2'] = bollinger2['lower']
         dataframe['bb_middleband2'] = bollinger2['mid']
         dataframe['bb_upperband2'] = bollinger2['upper']
+        
+        bollinger3 = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=40, stds=3)
+        dataframe['bb_lowerband3'] = bollinger3['lower']
+        dataframe['bb_middleband3'] = bollinger3['mid']
+        dataframe['bb_upperband3'] = bollinger3['upper']
+        
+        
         dataframe['sell-rsi'] = ta.RSI(dataframe)
         dataframe['buy-rsi_b'] = ta.RSI(dataframe)
         dataframe['buy-rsi_c'] = ta.RSI(dataframe)
@@ -198,7 +220,7 @@ class CombinedBinHAndCluc(IStrategy):
         """
         """
         dataframe.loc[
-        	(qtpylib.crossed_below(dataframe['sell-rsi'], 53) ) &
+        	(qtpylib.crossed_below(dataframe['sell-rsi'], 63) ) &
             (dataframe['close'] > dataframe['bb_middleband2'])
             
             ,
