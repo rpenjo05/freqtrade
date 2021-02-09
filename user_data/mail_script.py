@@ -36,7 +36,7 @@ while True:
     res = r.get('https://www.binance.com/api/v3/klines?symbol=BTCUSDT&interval=5m&limit=20')
     data = res.json()
     percentage = 1 - float(data[0][4])/float(data[-1][4])
-    if percentage > 0.08 and  flag==0:
+    if percentage > 0.05 and  flag==0:
         str_out = subprocess.check_output("python /workspace/testing/freqtrade/scripts/rest_client.py -c /workspace/testing/freqtrade/rest_config.json stopbuy",shell=True)
         send_mail('Stopbuy\n percentage Change='+str(percentage) +'  \n  ' + str(str_out) )
         flag = 1
