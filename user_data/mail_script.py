@@ -48,8 +48,8 @@ while True:
                 str_out = subprocess.check_output("python /workspace/testing/freqtrade/scripts/rest_client.py -c /workspace/testing/freqtrade/rest_config.json reload_config",shell=True)
                 send_mail('Reload Config   \n  '+ str(str_out) )
                 flag = 0
-
-    sleep(30)
+    send_mail("Percentage Change="+str(percentage))
+    sleep(300)
 
 
 
