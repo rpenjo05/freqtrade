@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Feb  9 06:49:06 2021
+Created on Tue Feb  9 14:47:52 2021
 
 @author: Penjo
 """
@@ -27,11 +27,9 @@ def send_mail(msg):
 flag = 0
 send_mail("Mails Service Started")
 #percentage = 0.8
-#str_out = subprocess.check_output("python /workspace/testing/freqtrade/scripts/rest_client.py -c /workspace/testing/freqtrade/rest_config.json stopbuy",shell=Tru
-e)
+#str_out = subprocess.check_output("python /workspace/testing/freqtrade/scripts/rest_client.py -c /workspace/testing/freqtrade/rest_config.json stopbuy",shell=True)
 #send_mail('Stopbuy\n percentage Change='+str(percentage) +'  \n  ' + str(str_out) )
-#str_out = subprocess.check_output("python /workspace/testing/freqtrade/scripts/rest_client.py -c /workspace/testing/freqtrade/rest_config.json reload_config",she
-ll=True)
+#str_out = subprocess.check_output("python /workspace/testing/freqtrade/scripts/rest_client.py -c /workspace/testing/freqtrade/rest_config.json reload_config",shell=True)
 #send_mail('Reload Config   \n  '+ str(str_out) )
 
 while True:
@@ -49,7 +47,3 @@ while True:
             flag = 0
     send_mail("Percentage Change="+str(percentage))
     sleep(300)
-
-
-
-
