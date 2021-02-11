@@ -148,17 +148,17 @@ class CombinedBinHAndCluc(IStrategy):
     
     # ROI table:
     minimal_roi = {
-        "0": 0.03156,
-        "128": 0.02891,
-        "416": 0.02525,
-        "644": 0.02222,
-        "681": 0.01873,
-        "777": 0.01396,
-        "1037": 0.01212,
-        "1183": 0.00726,
-        "1298": 0.00463,
-        "1342": 0.00146,
-        "1618": 0
+        "0": 0.02727,
+        "280": 0.02558,
+        "529": 0.02211,
+        "689": 0.01719,
+        "970": 0.01473,
+        "1213": 0.0128,
+        "1417": 0.00858,
+        "1539": 0.00498,
+        "1556": 0.00258,
+        "1655": 0.00211,
+        "1783": 0
     }
 
 
@@ -236,8 +236,8 @@ class CombinedBinHAndCluc(IStrategy):
         """
         """
         dataframe.loc[
-        	(qtpylib.crossed_below(dataframe['sell-rsi'], 63) ) &
-            (dataframe['close'] > dataframe['bb_middleband2'])
+        	(qtpylib.crossed_below(dataframe['sell-rsi'], 55) ) &
+            (dataframe['close'] > dataframe['bb_lowerband2'])
             
             ,
             'sell'
