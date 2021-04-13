@@ -148,21 +148,21 @@ class CombinedBinHAndCluc(IStrategy):
     
     # ROI table:
     minimal_roi = {
-        "0": 0.03124,
-        "109": 0.03001,
-        "266": 0.02543,
-        "402": 0.02074,
-        "461": 0.01822,
-        "638": 0.0138,
-        "774": 0.01111,
-        "780": 0.00854,
-        "788": 0.0061,
-        "971": 0.00193,
-        "1079": 0
+        "0": 0.02138,
+        "19": 0.01938,
+        "143": 0.01821,
+        "336": 0.01471,
+        "530": 0.01216,
+        "826": 0.01026,
+        "966": 0.00905,
+        "1254": 0.00693,
+        "1442": 0.0044,
+        "1478": 0.00068,
+        "1752": 0
     }
 
     # Stoploss:
-    stoploss = -0.28535
+    stoploss = -0.32951
 
     
     
@@ -226,7 +226,8 @@ class CombinedBinHAndCluc(IStrategy):
                     (dataframe['close'] < dataframe['ema_slow']) &
                     (dataframe['close'] < 0.985 * dataframe['bb_lowerband']) &
                     (dataframe['volume'] < (dataframe['volume_mean_slow'].shift(1) * 20))
-            ) & (qtpylib.crossed_above(dataframe['buy-rsi_c'], 18))  )
+               )
+            ) 
             ,
             'buy'
         ] = 1
@@ -236,8 +237,8 @@ class CombinedBinHAndCluc(IStrategy):
         """
         """
         dataframe.loc[
-        	(qtpylib.crossed_below(dataframe['sell-rsi'], 75) ) &
-            (dataframe['close'] > dataframe['bb_upperband3'])
+        	(qtpylib.crossed_below(dataframe['sell-rsi'], 82) ) &
+            (dataframe['close'] > dataframe['bb_middleband2'])
             
             ,
             'sell'
