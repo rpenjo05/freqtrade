@@ -105,7 +105,7 @@ class HOSwingHighToSky(IHyperOpt):
             Categorical(cciBuyTriggerList, name='cci-buy-trigger'),
             Categorical(rsiBuyTriggerList, name='rsi-buy-trigger')
         ]
-    
+
     @staticmethod
     def generate_roi_table(params: Dict) -> Dict[int, float]:
 
@@ -124,6 +124,7 @@ class HOSwingHighToSky(IHyperOpt):
 
 	return roi_table
 
+    
     @staticmethod
     def sell_strategy_generator(params: Dict[str, Any]) -> Callable:
 
