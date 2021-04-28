@@ -27,9 +27,9 @@ class CombinedBinHAndClucOpt(IHyperOpt):
 				
 			conditions.append(		(  # strategy BinHV45
 							    dataframe['lower'].shift().gt(0) &
-							    dataframe['bbdelta'].gt(dataframe['close'] * 0.008) &
-							    dataframe['closedelta'].gt(dataframe['close'] * 0.0175) &
-							    dataframe['tail'].lt(dataframe['bbdelta'] * 0.25) &
+							    dataframe['bbdelta'].gt(dataframe['close'] params['bbdelta'] / 1000) &
+							    dataframe['closedelta'].gt(dataframe['close'] params['closedelta'] / 1000) &
+							    dataframe['tail'].lt(dataframe['bbdelta'] * params['tail'] / 1000) &
 							    dataframe['close'].lt(dataframe['lower'].shift()) &
 							    dataframe['close'].le(dataframe['close'].shift())
 						    ) |
@@ -52,8 +52,9 @@ class CombinedBinHAndClucOpt(IHyperOpt):
 	@staticmethod
 	def indicator_space() -> List[Dimension]:
 		return [
-		    Integer(10, 50, name='buy-rsi-value'),
-		    Categorical([True, False], name='buy-rsi-enabled'),
+		    Integer(1, 15, name='bbdelta'),
+		    Integer(15, 20, name='closedelta'),
+                    Integer(20, 30, name='tail'),
 		]
 
 	@staticmethod
