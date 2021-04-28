@@ -27,8 +27,8 @@ class CombinedBinHAndClucOpt(IHyperOpt):
 				
 			conditions.append(		(  # strategy BinHV45
 							    dataframe['lower'].shift().gt(0) &
-							    dataframe['bbdelta'].gt(dataframe['close'] params['bbdelta'] / 1000) &
-							    dataframe['closedelta'].gt(dataframe['close'] params['closedelta'] / 1000) &
+							    dataframe['bbdelta'].gt(dataframe['close'] * params['bbdelta'] / 1000) &
+							    dataframe['closedelta'].gt(dataframe['close'] * params['closedelta'] / 1000) &
 							    dataframe['tail'].lt(dataframe['bbdelta'] * params['tail'] / 1000) &
 							    dataframe['close'].lt(dataframe['lower'].shift()) &
 							    dataframe['close'].le(dataframe['close'].shift())
