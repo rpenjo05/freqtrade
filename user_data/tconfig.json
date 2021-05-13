@@ -73,7 +73,7 @@
 	{
         "method": "VolatilityFilter",
         "lookback_days": 6,
-        "min_volatility": 0.05,
+        "min_volatility": 0.15,
         "max_volatility": 0.50,
         "refresh_period": 86400
     }
