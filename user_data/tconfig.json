@@ -22,7 +22,7 @@
             "bids_to_ask_delta": 1
         }
     },
-    
+
     "ask_strategy":{
         "use_order_book": false,
         "order_book_min": 1,
@@ -43,34 +43,40 @@
         "pair_whitelist": [
             "ETH/BTC",
             "XRP/BTC",
-	    "YFI/BTC",
-	    "LTC/BTC",
-	    "BCH/BTC",
-	    "ADA/BTC",
-	    "XLM/BTC",
-	    "DOT/BTC",
-	    "ATOM/BTC",
-	    "BAND/BTC",
-	    "NANO/BTC",
-	    "LRC/BTC",
-	    "SXP/BTC",
-	     "CTXC/BTC",
+            "YFI/BTC",
+            "LTC/BTC",
+            "BCH/BTC",
+            "ADA/BTC",
+            "XLM/BTC",
+            "DOT/BTC",
+            "ATOM/BTC",
+            "BAND/BTC",
+            "NANO/BTC",
+            "LRC/BTC",
+            "SXP/BTC",
+             "CTXC/BTC",
         ],
         "pair_blacklist": [
-	     "BNB/BTC",
-		"BTCST/BTC",
+             "BNB/BTC",
         ]
     },
     "pairlists": [
-	    {
-	"method": "VolumePairList",
-	"number_assets": 150,
-	"sort_key": "quoteVolume",
-	"refresh_period": 1800
-	},
-	    {"method": "PriceFilter", 
-	     "min_price": 0.00000400
-	    }
+            {
+        "method": "VolumePairList",
+        "number_assets": 150,
+        "sort_key": "quoteVolume",
+        "refresh_period": 1800
+        },
+            {"method": "PriceFilter",
+             "min_price": 0.00000400
+            },
+	{
+        "method": "VolatilityFilter",
+        "lookback_days": 6,
+        "min_volatility": 0.05,
+        "max_volatility": 0.50,
+        "refresh_period": 86400
+    }
     ],
     "edge": {
         "enabled": false,
