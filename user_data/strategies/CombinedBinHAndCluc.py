@@ -146,7 +146,6 @@ class CombinedBinHAndCluc(IStrategy):
         "1649": 0
     } """
     # ROI table:
-    # ROI table:
 	minimal_roi = {
 	"0": 0.02068,
 	"74": 0.01778,
@@ -163,10 +162,10 @@ class CombinedBinHAndCluc(IStrategy):
 
 	# Stoploss:
 	stoploss = -0.346
-    
-    use_sell_signal = True
-    sell_profit_only = True
-    ignore_roi_if_buy_signal = False
+
+	use_sell_signal = True
+	sell_profit_only = True
+	ignore_roi_if_buy_signal = False
 
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         # strategy BinHV45
