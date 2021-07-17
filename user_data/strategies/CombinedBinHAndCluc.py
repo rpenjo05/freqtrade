@@ -237,8 +237,8 @@ class CombinedBinHAndCluc(IStrategy):
         """
         """
         dataframe.loc[
-        	(qtpylib.crossed_below(dataframe['sell-rsi'], 81) ) &
-            (dataframe['close'] > dataframe['bb_lowerband2'])
+        	(qtpylib.crossed_below(dataframe['sell-rsi'], 83) ) &
+            (dataframe['close'] > dataframe['bb_upperband2'])
             
             ,
             'sell'
