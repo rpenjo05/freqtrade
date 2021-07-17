@@ -146,22 +146,23 @@ class CombinedBinHAndCluc(IStrategy):
         "1649": 0
     } """
     # ROI table:
+    # ROI table:
     minimal_roi = {
         "0": 0.02068,
-        "84": 0.01941,
-        "130": 0.01771,
-        "343": 0.01392,
-        "397": 0.00986,
-        "542": 0.00853,
-        "602": 0.00715,
-        "708": 0.00611,
-        "898": 0.00487,
-        "1097": 0.00415,
-        "1231": 0
+        "74": 0.01778,
+        "142": 0.01453,
+        "226": 0.01207,
+        "231": 0.00739,
+        "352": 0.00603,
+        "386": 0.0048,
+        "443": 0.00368,
+        "572": 0.00251,
+        "663": 0.00038,
+        "798": 0
     }
 
     # Stoploss:
-    stoploss = -0.35
+    stoploss = -0.346
     
     use_sell_signal = True
     sell_profit_only = True
@@ -228,7 +229,7 @@ class CombinedBinHAndCluc(IStrategy):
         """
         dataframe.loc[
         	(qtpylib.crossed_below(dataframe['sell-rsi'], 83) ) &
-            (dataframe['close'] > dataframe['bb_upperband2'])
+            (dataframe['close'] > dataframe['bb_middleband2'])
             
             ,
             'sell'
