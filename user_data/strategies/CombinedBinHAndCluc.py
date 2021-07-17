@@ -20,7 +20,7 @@ class CombinedBinHAndCluc(IStrategy):
     #   so it is better to increase "stake_amount" value rather then "max_open_trades" to get more profit
     # - if the market is constantly green(like in JAN 2018) the best performance is reached with
     #   "max_open_trades" = 2 and minimal_roi = 0.01
-     # ROI table:
+    # ROI table:
     
     """#Sharpe 3.28
     minimal_roi = {
@@ -145,7 +145,7 @@ class CombinedBinHAndCluc(IStrategy):
         "1366": 0.0034,
         "1649": 0
     } """
-    # ROI table:
+	# ROI table:
 	minimal_roi = {
 	"0": 0.02068,
 	"74": 0.01778,
@@ -167,42 +167,42 @@ class CombinedBinHAndCluc(IStrategy):
 	sell_profit_only = True
 	ignore_roi_if_buy_signal = False
 
-    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        # strategy BinHV45
-        mid, lower = bollinger_bands(dataframe['close'], window_size=40, num_of_std=2)
-        dataframe['lower'] = lower
-        dataframe['bbdelta'] = (mid - dataframe['lower']).abs()
-        dataframe['closedelta'] = (dataframe['close'] - dataframe['close'].shift()).abs()
-        dataframe['tail'] = (dataframe['close'] - dataframe['low']).abs()
-        # strategy ClucMay72018
-        bollinger = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=2)
-        dataframe['bb_lowerband'] = bollinger['lower']
-        dataframe['bb_middleband'] = bollinger['mid']
-        dataframe['ema_slow'] = ta.EMA(dataframe, timeperiod=50)
-        dataframe['volume_mean_slow'] = dataframe['volume'].rolling(window=30).mean()
-        
-        bollinger1 = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=1)
-        dataframe['bb_lowerband1'] = bollinger1['lower']
-        dataframe['bb_middleband1'] = bollinger1['mid']
-        dataframe['bb_upperband1'] = bollinger1['upper']
-        
-        bollinger2 = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=40, stds=2)
-        dataframe['bb_lowerband2'] = bollinger2['lower']
-        dataframe['bb_middleband2'] = bollinger2['mid']
-        dataframe['bb_upperband2'] = bollinger2['upper']
-        
-        bollinger3 = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=40, stds=3)
-        dataframe['bb_lowerband3'] = bollinger3['lower']
-        dataframe['bb_middleband3'] = bollinger3['mid']
-        dataframe['bb_upperband3'] = bollinger3['upper']
-        
-        
-        dataframe['sell-rsi'] = ta.RSI(dataframe)
-        dataframe['buy-rsi_b'] = ta.RSI(dataframe)
-        dataframe['buy-rsi_c'] = ta.RSI(dataframe)
-        dataframe['buy-rsi'] = ta.RSI(dataframe)
+	def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+		# strategy BinHV45
+		mid, lower = bollinger_bands(dataframe['close'], window_size=40, num_of_std=2)
+		dataframe['lower'] = lower
+		dataframe['bbdelta'] = (mid - dataframe['lower']).abs()
+		dataframe['closedelta'] = (dataframe['close'] - dataframe['close'].shift()).abs()
+		dataframe['tail'] = (dataframe['close'] - dataframe['low']).abs()
+		# strategy ClucMay72018
+		bollinger = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=2)
+		dataframe['bb_lowerband'] = bollinger['lower']
+		dataframe['bb_middleband'] = bollinger['mid']
+		dataframe['ema_slow'] = ta.EMA(dataframe, timeperiod=50)
+		dataframe['volume_mean_slow'] = dataframe['volume'].rolling(window=30).mean()
+		
+		bollinger1 = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=1)
+		dataframe['bb_lowerband1'] = bollinger1['lower']
+		dataframe['bb_middleband1'] = bollinger1['mid']
+		dataframe['bb_upperband1'] = bollinger1['upper']
+		
+		bollinger2 = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=40, stds=2)
+		dataframe['bb_lowerband2'] = bollinger2['lower']
+		dataframe['bb_middleband2'] = bollinger2['mid']
+		dataframe['bb_upperband2'] = bollinger2['upper']
+		
+		bollinger3 = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=40, stds=3)
+		dataframe['bb_lowerband3'] = bollinger3['lower']
+		dataframe['bb_middleband3'] = bollinger3['mid']
+		dataframe['bb_upperband3'] = bollinger3['upper']
+		
+		
+		dataframe['sell-rsi'] = ta.RSI(dataframe)
+		dataframe['buy-rsi_b'] = ta.RSI(dataframe)
+		dataframe['buy-rsi_c'] = ta.RSI(dataframe)
+		dataframe['buy-rsi'] = ta.RSI(dataframe)
 
-        return dataframe
+		return dataframe
 
 	def populate_buy_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 		dataframe.loc[
